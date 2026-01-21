@@ -25,6 +25,8 @@ import time
 from dicom2nifti.exceptions import ConversionValidationError
 from dataclasses import dataclass
 
+__version__ = "1.0.0"
+
 # ============================================
 # Logging
 # ============================================
@@ -1032,6 +1034,7 @@ def main():
     parser.add_argument("--resample", action = "store_true", help = "Enable dicom2nifti resampling (slower). Default: off")
     parser.add_argument("--stack-echoes", action = "store_true")
     parser.add_argument("-v", "--verbose", action = "count", default = 0, help = "Increase verbosity (-v, -vv)")
+    parser.add_argument("--version", action = "version", version = f"%(prog)s {__version__}")
     
     args = parser.parse_args()
     setup_logging(args.verbose)
