@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "dicom-to-nifti-bids"
+version: "1.0.1"
+doi: "10.581/zenodo.18332432"
+repository-code: "https://codemeta.github.io/terms/#codeRepository" 
+license: "MIT"
+authors:
+  - family-names: "Swofford"
+    given-names: "Evan"
+keywords:
+  - DICOM
+  - NIfTI
+  - BIDS
+  - medical imaging
+  - MRI
+  - CT
+  - PET

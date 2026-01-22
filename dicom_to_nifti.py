@@ -25,7 +25,7 @@ import time
 from dicom2nifti.exceptions import ConversionValidationError
 from dataclasses import dataclass
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 # ============================================
 # Logging
@@ -780,7 +780,7 @@ def write_dataset_description(out_root: Path):
             "BIDSVersion": "1.9.0",
             "GeneratedBy": [{
                 "Name": "dicom_to_nifti",
-                "version": "1.0.0",
+                "version": "1.0.1",
                 "Description": "Automated DICOM -> BIDS converter with QC"
             }],
             "DatasetType": "raw",

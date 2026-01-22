@@ -1,0 +1,35 @@
+Bootstrap: docker
+From: python:3.11-slim
+
+%labels
+    Author Evan Swofford
+    Version v1.0.1
+    Description "dicom-to-nifti (BIDS-oriented) container"
+
+%environment
+    export PYTHONDONTWRITEBYTECODE=1
+    export PYTHONUNBUFFERED=1
+
+%post
+    set -e
+    apt-get update && apt-get install -y --no-install-recommends \
+        ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+    mkdir -p /opt/app
+    cd /opt/app
+
+    python -m pip install --upgrade pip
+
+    # Install your project from the bundled source copied in via %files 
+    python -m pip install .
+
+%files
+    pyproject.toml /opt/app/pyproject.toml
+    README.md /opt/app/README.md
+    LICENSE /opt/app/LICENSE
+    dicom_to_nifti.py /opt/app/dicom_to_nifti.py
+
+%runscript
+    # Default run behavior: call the CLI
+    exec dicom-to-nifti "$@"

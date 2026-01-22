@@ -1,0 +1,31 @@
+# Large data / datasets
+dicom/
+data/
+datasets/
+*.nii
+*.nii.gz
+*.json
+
+# Virtual environments
+.venv/
+.venv_test/
+venv/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# IDE / OS junk
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore

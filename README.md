@@ -1,5 +1,7 @@
 # dicom-to-nifti (BIDS-oriented)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18332432.svg)](https://doi.org/10.5281/zenodo.18332432)
+
 a parallel DICOM -> NIfTI converter designed for ML / research pipelines.
 It scans a DICOM directory tree, groups series, applies basic QC, and writes BIDS-style outputs (`.nii.gz` + `.json`) into modality folders (e.g., `anat/`, `func/`, `dwi/`, `ct/`, `pet`).
 
@@ -50,6 +52,39 @@ dicom-to-nifti --version
 If `dicom-to-nifti` is not found, ensure your venv is activated. On Windows you can also run the executable directly:
 ```powershell
 .\.venv\Scripts\dicom-to-nifti.exe --help
+```
+
+## Containerized usage (Docker / Singularity)
+
+Pre-built containers allow fully reporducible execution without managing local Python environments.
+
+### Docker
+
+Build the image from the repository root:
+```bash
+docker build -t dicom-to-nifti:1.0.1 .
+```
+
+Run the converter:
+```bash
+docker run --rm -it \
+  -v /path/to/dicom:/data/in:ro \
+  -v /path/to/output:/data/out |
+  dicom-to-nifti:1.0.1 \
+  --input_root /data/in --output_root /data/out --workers 6 --qc warn
+```
+
+### Singularity
+
+Build the image:
+```bash
+singularity build dicom-to-nifti_1.0.0.sif Singularity.def
+```
+
+Run:
+```bash
+singularity run dicom-to-nifti_1.0.1.sif \
+  --input_root /path/to/dicom --output_root /path/to/output
 ```
 
 ---
@@ -114,12 +149,16 @@ Series that are not usable image stacks (SEG, SR, localizers, etc.) are skipped.
 
 ---
 
-## License
-
-MIT License. See `LICENSE`.
-
----
-
 ## Citation
 
 If you use this software in academic work, please tag a release and cite the repository version.
+
+- DOI: https://doi.org/10.5281/zenodo.18332432 
+
+a `CITATION.cff` file is included in this repository.
+
+---
+
+## License
+
+MIT License. See `LICENSE`.
